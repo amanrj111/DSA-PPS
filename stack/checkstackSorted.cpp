@@ -1,37 +1,41 @@
-#include<iostream>
-#include<stack>
+#include <iostream>
+#include <stack>
 #include <cmath>
 #include <limits.h>
 
 using namespace std;
 
-bool checkSorted(stack<int>& s, int prev){
-  //base case
-  if(s.empty()){
+bool checkSorted(stack<int> &s, int prev)
+{
+  // base case
+  if (s.empty())
+  {
     return true;
   }
 
-  //1 case hm solvbe karenge 
+  // 1 case hm solvbe karenge
   int next = s.top();
-  if(next < prev){
-    //not soorted
+  if (next < prev)
+  {
+    // not soorted
     return false;
-  }else{
-    //next >= prev -> sorted
+  }
+  else
+  {
+    // next >= prev -> sorted
 
-    //pop top wala element
+    // pop top wala element
     s.pop();
-    //prev move to next
+    // prev move to next
     prev = next;
 
-    //recursion
-    return checkSorted(s,prev);
-
-
+    // recursion
+    return checkSorted(s, prev);
   }
 }
 
-int main(){
+int main()
+{
 
   stack<int> s;
   s.push(50);
@@ -41,7 +45,7 @@ int main(){
   s.push(10);
 
   int prev = INT_MIN;
-  cout << checkSorted(s,prev);
+  cout << checkSorted(s, prev);
 
   return 0;
 }
