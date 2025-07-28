@@ -2,6 +2,7 @@
 #include <stack>
 #include <cmath>
 #include <limits.h>
+#include<algorithm>
 
 using namespace std;
 
@@ -34,6 +35,15 @@ bool checkSorted(stack<int> &s, int prev)
   }
 }
 
+void printStack(stack<int> s) {
+    // cout << "[top] ";
+    while (!s.empty()) {
+        cout << s.top() << " ";
+        s.pop();
+    }
+    // cout << "[bottom]" << endl;
+}
+
 int main()
 {
 
@@ -44,8 +54,10 @@ int main()
   s.push(20);
   s.push(10);
 
-  int prev = INT_MIN;
-  cout << checkSorted(s, prev);
+  printStack(s);
+
+  // int prev = INT_MIN;
+  // cout << checkSorted(s, prev);
 
   return 0;
 }
