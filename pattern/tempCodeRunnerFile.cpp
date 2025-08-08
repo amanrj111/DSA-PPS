@@ -1,12 +1,16 @@
-for (int row=1; row<=n; row++){
-  //   //spac
-  //   for(int col=1; col<=n-row; col++){
+for (int i = 0; i < n; i++)
+  // {
+  //   int k = i;
+
+  //   for (int j = i; j < n; j++)
+  //   {
   //     cout << " ";
   //   }
-  //   //star
-  //   for(int col=1; col<=row; col++){
-  //     cout << "* ";
+  //   for (int j = 0; j < k; j++)
+  //   {
+  //     cout << " *";
   //   }
-  //   cout << endl;
+  //   k= k + 2;
 
+  //   cout << endl;
   // }
