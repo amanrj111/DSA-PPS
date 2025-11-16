@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <stack>
-#include<queue>
+#include <queue>
 
 using namespace std;
 
@@ -92,54 +92,77 @@ void postOrderTraversal(Node *root)
   cout << root->data << " ";
 }
 
-void levelOrderTraversal(Node* root){
-  //bc
-  if(root == NULL){
-    return ;
+void levelOrderTraversal(Node *root)
+{
+  // bc
+  if (root == NULL)
+  {
+    return;
   }
-  //LOT
-  queue<Node* > q;
-  //initial state maintain
+  // LOT
+  queue<Node *> q;
+  // initial state maintain
   q.push(root);
+  q.push(NULL); // marker for end of level
 
-  while(!q.empty()){
-    Node* front  = q.front();
+
+  while (!q.empty())
+  {
+
+    Node *front = q.front();
     q.pop();
 
-    cout << front->data << " ";
-    
-    if(front->left != NULL){
-      q.push(front->left);
+    if (front == NULL)
+    {
+      //current lvl ki saari node print ho chuki hai 
+      //got to next line
+      cout << endl;
+      //agar q empty h,then do not insert NULL ->infinite loop generate
+      //agar q non empty hai then insert it
+      if(!q.empty()){
+        q.push(NULL);
+      }
     }
-    if(front->right != NULL){
-      q.push(front->right);
+    else
+    {
+      cout << front->data << " " ;
+
+      if (front->left != NULL)
+      {
+        q.push(front->left);
+      }
+      if (front->right != NULL)
+      {
+        q.push(front->right);
+      }
     }
   }
 }
 
-int main(){
-  //10 20 30 -1 -1 40 -1 -1 50 -1 60 -1 -1
-  Node* root = buildTree();
+int main()
+{
+  // 10 20 30 -1 -1 40 -1 -1 50 -1 60 -1 -1
+  Node *root = buildTree();
   cout << endl;
 
   cout << "printing preorder travwersal : ";
   preOrederTraversal(root);
 
-  cout<<endl;
+  cout << endl;
 
   cout << "printing ineorder travwersal : ";
   inOrderTraversal(root);
-  cout<<endl;
+  cout << endl;
 
   cout << "printing postorder travwersal : ";
   postOrderTraversal(root);
 
-  cout<<endl;
+  cout << endl;
 
-  cout << "printing postorder levelOrderTraversal : ";
+  cout << "printing postorder levelOrderTraversal : " << endl ;
   levelOrderTraversal(root);
 
-  cout<<endl;
+  cout << endl;
 
   return 0;
 }
