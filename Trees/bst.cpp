@@ -49,6 +49,127 @@ Node* createBST(Node* root){
   return root;
 }
 
-void preOrder(Node){
+void preOrder(Node* root){
+  //nlr
+  if(root == NULL){
+    return ;
+  }
+
+  //NLR
+  cout << root->data << " ";
+  preOrder(root->left);
+  preOrder(root->right);
 
 }
+
+
+void inOrder(Node* root){
+  //bc
+  if(root == NULL){
+    return ;
+  }
+
+  //LNR
+  inOrder(root->left);
+  cout << root->data << " ";
+  inOrder(root->right);
+  
+}
+
+void postOrder(Node* root){
+  //bc
+  if(root == NULL){
+    return ;
+  }
+
+  //LRN
+  postOrder(root->left);
+  postOrder(root->right);
+  cout << root->data << " ";
+  
+}
+
+void levelOrderTraversal(Node* root){
+  queue<Node*> q;
+  //initial state
+
+  q.push(root);
+  q.push(NULL);
+
+  while(!q.empty()){
+    Node* front = q.front();
+    q.pop();
+
+    if(front == NULL){
+      //iska matlab current ki sari node travel ho chuki hai
+      cout << endl;
+      if(!q.empty()){
+        q.push(NULL);
+      }
+    }else{
+      cout << front->data << " ";
+      if(front->left){
+        q.push(front->left);
+      }
+      if(front->right){
+        q.push(front->right);
+      }
+    }
+  }
+}
+
+int getMin(Node* root){
+  if(root == NULL){
+    return -1;
+  }
+
+  while(root ->left != NULL){
+    root = root -> left;
+  }
+  return root->data;
+
+}
+
+int getMax(Node* root){
+  if(root == NULL){
+    return -1;
+  }
+
+  while(root ->right != NULL){
+    root = root -> right;
+  }
+  return root->data;
+
+}
+
+
+int main() {
+  Node* root = NULL;
+  root = createBST(root);
+
+  cout << "printing preOrder : ";
+  preOrder(root);
+  cout << endl;
+  
+  cout << "printing inorder : ";
+  inOrder(root);
+  cout << endl;;
+
+  cout << "printing postorder : ";
+  postOrder(root);
+  cout << endl;
+
+  cout << "level order :" << endl;
+  levelOrderTraversal(root);
+  cout << endl;
+
+  cout << "maximun is : " << endl;
+  cout << getMax(root) << endl;
+
+  cout << "minimum is : " << endl;
+  cout << getMin(root) << endl;
+
+
+}
+
+// BSR -> inorder  -> always sorted;
